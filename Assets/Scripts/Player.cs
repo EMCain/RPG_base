@@ -7,6 +7,8 @@ public class Player : MovingObject {
 	private int coins;
 	private int health;
 
+	private int maxCoins;
+	private int maxHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +16,9 @@ public class Player : MovingObject {
 		// TODO get coins, health from GameManager 
 		coins = 0;
 		health = 5;
+
+		maxCoins = 99;
+		maxHealth = 5;
 
 		base.Start();
 	}
@@ -41,4 +46,31 @@ public class Player : MovingObject {
 		RaycastHit2D hit;
 		Move(xDir, yDir, out hit);
 	}
+
+	private void OnTriggerEnter2D (Collider2D other) {
+		Token token = other.gameObject.GetComponent<Token>();
+		if (token != null) {
+			Debug.Log("token " + token);
+			changeQty(token.tag, token.qty);
+			Destroy(other.gameObject);
+		}
+	}
+
+	private void changeQty (string type, int qty) {
+		switch (type) {
+			case "coin":
+				coins += qty;
+				if (coins > maxCoins)
+					coins = maxCoins;
+
+				Debug.Log("coins = " + coins.ToString());
+				break;
+			case "health": 
+				health += qty; 
+				// TODO check if dead/game over 
+				break;
+		}
+
+	}
+
 }

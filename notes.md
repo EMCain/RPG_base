@@ -1,6 +1,17 @@
 # project notes
 
-04-02-2018:
+## 16-02-2016:
+Partially completed this:
+https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-player-script?playlist=17150
+
+I left out some things and added some things. 
+
+Biggest frustrations:
+
+* forgot to set gravity to 0 on the rigid body 2d, so it "fell" as soon as the game started
+* forgot to call base.Start on the Player class's start method, so it didn't assign variables properly
+
+## 04-02-2018:
 
 I completed the tutorial section here, [Moving Object Script](https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/moving-object-script?playlist=17150), from [2D Roguelike tutorial](https://unity3d.com/learn/tutorials/s/2d-roguelike-tutorial).
 
