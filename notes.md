@@ -1,6 +1,17 @@
 # project notes
 
-## 16-02-2016:
+## 25-02-2018:
+Started moving way further from the tutorial. 
+
+Made an enemy that moves around and deals damage. Right now it deals way too much damage. 
+
+Some silly mistakes I keep making:
+* not checking that a script is attached to the object I expect it is
+* passing in strings as flags and spelling them inconsistently 
+
+I did a lot though!
+
+## 16-02-2018:
 Partially completed this:
 https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-player-script?playlist=17150
 

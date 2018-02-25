@@ -61,10 +61,27 @@ public class Player : MovingObject {
 			Destroy(other.gameObject);
 			return;
 		}
-		// TODO implement similar but for encounters with Enemies 
-		// TODO create a base AbstractEnemy that inherits off the AbstractAutomaton class so that we can check against that 
 
-		
+		BasicEnemy enemy = other.gameObject.GetComponent<BasicEnemy>();
+		if (enemy != null) {
+			/* TODO this is doing damage way too fast 
+				create a "TakeDamage" method that takes a number of damage points
+					starts an enumerator that deals that much damage every (interval)
+					ends the enumerator when contact is broken with the enemy 
+					that would seem like a resonable place to check if you died
+				have the player jump back quickly 
+					this will probably require its own function, 
+					that calls Move with a higher speed and for a sustained period
+
+			*/
+			Vector3 away = gameObject.transform.position - enemy.transform.position;
+			AttemptMove<Component>((int) away.x, (int) away.y);
+			changeQty("health", enemy.DamageDealt());
+
+			return;
+		}
+
+		// TODO create a base AbstractEnemy that inherits off the AbstractAutomaton class so that we can check against that 
 	}
 
 	private void changeQty (string type, int qty) {
