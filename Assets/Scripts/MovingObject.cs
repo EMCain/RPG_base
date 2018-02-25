@@ -11,6 +11,10 @@ public abstract class MovingObject : MonoBehaviour {
 	private Rigidbody2D rb2D;
 	private float inverseMoveTime; 
 
+	private bool stopped = false;
+
+	private IEnumerator smoothMovementEnumerator = null;
+
 	// Use this for initialization
 	protected virtual void Start () {
 		boxCollider = GetComponent<BoxCollider2D>();
@@ -27,8 +31,11 @@ public abstract class MovingObject : MonoBehaviour {
 		boxCollider.enabled = true;
 
 		if (hit.transform == null) {
-			StartCoroutine(SmoothMovement(end));
-			return true;
+			if (smoothMovementEnumerator != null) {
+				StopCoroutine(smoothMovementEnumerator);
+			}
+			smoothMovementEnumerator = SmoothMovement(end);
+			StartCoroutine(smoothMovementEnumerator);
 		}
 		return false;
 	}

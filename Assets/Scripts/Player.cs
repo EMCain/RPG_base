@@ -59,7 +59,12 @@ public class Player : MovingObject {
 		if (token != null) {
 			changeQty(token.tag, token.qty);
 			Destroy(other.gameObject);
+			return;
 		}
+		// TODO implement similar but for encounters with Enemies 
+		// TODO create a base AbstractEnemy that inherits off the AbstractAutomaton class so that we can check against that 
+
+		
 	}
 
 	private void changeQty (string type, int qty) {
