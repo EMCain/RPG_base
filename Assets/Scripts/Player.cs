@@ -17,8 +17,8 @@ public class Player : MovingObject {
 		coins = 0;
 		health = 5;
 
-		maxCoins = 99;
-		maxHealth = 5;
+		maxCoins = 5;
+		maxHealth = 3;
 
 		base.Start();
 	}
@@ -63,10 +63,11 @@ public class Player : MovingObject {
 				if (coins > maxCoins)
 					coins = maxCoins;
 
-				Debug.Log("coins = " + coins.ToString());
 				break;
 			case "health": 
-				health += qty; 
+				health += qty;
+				if (health > maxHealth)
+					health = maxHealth; 
 				// TODO check if dead/game over 
 				break;
 		}
