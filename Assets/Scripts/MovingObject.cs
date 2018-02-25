@@ -13,7 +13,6 @@ public abstract class MovingObject : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		GameManager.instance = GameManager.instance;
 		boxCollider = GetComponent<BoxCollider2D>();
 		rb2D = GetComponent<Rigidbody2D>();
 		inverseMoveTime = 1f/moveTime;
@@ -34,6 +33,7 @@ public abstract class MovingObject : MonoBehaviour {
 		return false;
 	}
 
+	// TODO debug weird jerky angular movement on direction change
 	protected IEnumerator SmoothMovement(Vector3 end) {
 		float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 

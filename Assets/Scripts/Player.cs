@@ -15,8 +15,8 @@ public class Player : MovingObject {
 	void Start () {
 		// TODO get animator 
 		// TODO get max coins, health from GameManager 
-		maxCoins = 10;
-		maxHealth = 5; 
+		maxCoins = GameManager.instance.maxCoins;
+		maxHealth = GameManager.instance.maxHealth;
 
 		base.Start();
 	}
@@ -24,7 +24,10 @@ public class Player : MovingObject {
 	public void SetHealth(int newHealth) {
 		health = newHealth;
 		GameManager.instance.UpdatePlayerStats<int>("health", health);
-		// TODO refactor, remove redundancy with changeQty (or get that function to call this one)
+	}
+	public void SetCoins(int newCoins) {
+		coins = newCoins;
+		GameManager.instance.UpdatePlayerStats<int>("coins", coins);
 	}
 
 	// Update is called once per frame
@@ -62,18 +65,17 @@ public class Player : MovingObject {
 	private void changeQty (string type, int qty) {
 		switch (type) {
 			case "coin":
-				coins += qty;
-				if (coins > maxCoins)
-					coins = maxCoins;
-
+				int newCoins = coins + qty;
+				if (newCoins > maxCoins)
+					newCoins = maxCoins; 
+				SetCoins(newCoins);
 				break;
 			case "health": 
-				health += qty;
-				if (health > maxHealth)
-					health = maxHealth; 
+				int newHealth = health + qty;
+				if (newHealth > maxHealth)
+					newHealth = maxHealth; 
 				// TODO check if dead/game over -- perhaps in the GameManager
-
-				GameManager.instance.UpdatePlayerStats<int>("health", health);
+				SetHealth(newHealth);
 				break;
 		}
 

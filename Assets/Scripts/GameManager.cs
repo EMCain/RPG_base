@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 	public int maxCoins;
 	public int maxHealth;
 
+	public int coins;
+	public int health;
+
 	public Player player;
 
 	// Use this for initialization
@@ -25,10 +28,15 @@ public class GameManager : MonoBehaviour {
 
 		// TODO look up existing values first, and only set to these if there aren't any
 		maxCoins = 10;
-		maxHealth = 5; // TODO start at 3, don't subtract when passing in to next line 
+		maxHealth = 5;
 
-		player.SetHealth(maxHealth - 2);
-		// TODO also coins--start at 0
+		// useful if we persist the game manager but the player is recreated each level. 
+		coins = 0;
+		health = maxHealth - 2;
+		
+		player.SetHealth(health);
+		player.SetCoins(coins);
+
 	}
 	
 	// TODO have some level initation code.

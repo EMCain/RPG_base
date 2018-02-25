@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour {
 
-	public Text healthText; 
+	public Text healthText;
+	public Text coinText;
+	 
 	// Use this for initialization
 	void Start () {
 
@@ -16,6 +18,10 @@ public class CanvasManager : MonoBehaviour {
 		switch (name) {
 			case "health": 
 				healthText.text = String.Format("health: {0}", value); 
+				// TODO find a way to display current/ max health (max could be a variable on this object)
+				break;
+			case "coins": 
+				coinText.text = String.Format("coins: {0}", value); 
 				// TODO find a way to display current/ max health (max could be a variable on this object)
 				break;
 		}
