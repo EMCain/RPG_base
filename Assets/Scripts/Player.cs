@@ -7,22 +7,26 @@ public class Player : MovingObject {
 	private int coins;
 	private int health;
 
+
 	private int maxCoins;
 	private int maxHealth;
 
 	// Use this for initialization
 	void Start () {
 		// TODO get animator 
-		// TODO get coins, health from GameManager 
-		coins = 0;
-		health = 5;
-
-		maxCoins = 5;
-		maxHealth = 3;
+		// TODO get max coins, health from GameManager 
+		maxCoins = 10;
+		maxHealth = 5; 
 
 		base.Start();
 	}
 	
+	public void SetHealth(int newHealth) {
+		health = newHealth;
+		GameManager.instance.UpdatePlayerStats<int>("health", health);
+		// TODO refactor, remove redundancy with changeQty (or get that function to call this one)
+	}
+
 	// Update is called once per frame
 	void Update () {
 		int horizontal = 0;
@@ -50,7 +54,6 @@ public class Player : MovingObject {
 	private void OnTriggerEnter2D (Collider2D other) {
 		Token token = other.gameObject.GetComponent<Token>();
 		if (token != null) {
-			Debug.Log("token " + token);
 			changeQty(token.tag, token.qty);
 			Destroy(other.gameObject);
 		}
@@ -68,7 +71,9 @@ public class Player : MovingObject {
 				health += qty;
 				if (health > maxHealth)
 					health = maxHealth; 
-				// TODO check if dead/game over 
+				// TODO check if dead/game over -- perhaps in the GameManager
+
+				GameManager.instance.UpdatePlayerStats<int>("health", health);
 				break;
 		}
 
