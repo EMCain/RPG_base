@@ -1,6 +1,23 @@
 # project notes
 
 ## 25-02-2018:
+
+keep getting 
+```
+MissingReferenceException: The variable canvas of GameManager doesn't exist anymore.
+You probably need to reassign the canvas variable of the 'GameManager' script in the inspector.
+UnityEngine.GameObject.GetComponent[CanvasManager] () (at /Users/builduser/buildslave/unity/build/artifacts/generated/common/runtime/GameObjectBindings.gen.cs:38)
+GameManager.UpdatePlayerStats[Int32] (System.String name, Int32 value) (at Assets/Scripts/GameManager.cs:84)
+Player.SetHealth (Int32 newHealth) (at Assets/Scripts/Player.cs:28)
+GameManager.Awake () (at Assets/Scripts/GameManager.cs:73)
+``` 
+on second time loading the "sample" scene.
+
+It doesn't seem to be a problem for the Player object. 
+
+Maybe that UI should be a singleton? 
+
+## 25-02-2018:
 Started moving way further from the tutorial. 
 
 Made an enemy that moves around and deals damage. Right now it deals way too much damage. 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - coin
   - health
+  - StatsCanvas
   layers:
   - Default
   - TransparentFX

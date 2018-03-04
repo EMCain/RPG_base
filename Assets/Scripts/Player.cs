@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MovingObject {
 
@@ -17,17 +18,31 @@ public class Player : MovingObject {
 		// TODO get max coins, health from GameManager 
 		maxCoins = GameManager.instance.maxCoins;
 		maxHealth = GameManager.instance.maxHealth;
-
+		// health = 3;
+		// coins = 0;
+		SetHealth(3);
+		SetCoins(0);
 		base.Start();
 	}
 	
 	public void SetHealth(int newHealth) {
 		health = newHealth;
 		GameManager.instance.UpdatePlayerStats<int>("health", health);
+		if (health <= 0)
+			SceneManager.LoadScene("GameOverMenu"); // TODO move this functionality into GameManager
+
 	}
 	public void SetCoins(int newCoins) {
 		coins = newCoins;
 		GameManager.instance.UpdatePlayerStats<int>("coins", coins);
+	}
+
+	public int GetCoins() {
+		return coins; 
+	}
+
+	public int GetHealth() {
+		return health;
 	}
 
 	// Update is called once per frame
@@ -64,16 +79,6 @@ public class Player : MovingObject {
 
 		BasicEnemy enemy = other.gameObject.GetComponent<BasicEnemy>();
 		if (enemy != null) {
-			/* TODO this is doing damage way too fast 
-				create a "TakeDamage" method that takes a number of damage points
-					starts an enumerator that deals that much damage every (interval)
-					ends the enumerator when contact is broken with the enemy 
-					that would seem like a resonable place to check if you died
-				have the player jump back quickly 
-					this will probably require its own function, 
-					that calls Move with a higher speed and for a sustained period
-
-			*/
 			Vector3 away = gameObject.transform.position - enemy.transform.position;
 			AttemptMove<Component>((int) away.x, (int) away.y);
 			changeQty("health", enemy.DamageDealt());

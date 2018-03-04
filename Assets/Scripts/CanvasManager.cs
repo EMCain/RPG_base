@@ -10,10 +10,6 @@ public class CanvasManager : MonoBehaviour {
 	public Text coinText;
 	 
 	// Use this for initialization
-	void Start () {
-
-	}
-	
 	public void UpdateValue<T>(string name, T value) {
 		switch (name) {
 			case "health": 
@@ -28,7 +24,4 @@ public class CanvasManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-		
-	}
 }
