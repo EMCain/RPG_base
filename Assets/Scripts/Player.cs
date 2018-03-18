@@ -22,14 +22,11 @@ public class Player : MovingObject {
 	
 	public void SetHealth(int newHealth) {
 		health = newHealth;
-		GameManager.instance.UpdatePlayerStats<int>("health", health);
-		if (health <= 0)
-			SceneManager.LoadScene("GameOverMenu"); // TODO move this functionality into GameManager
-
+		GameManager.instance.UpdatePlayerStats("health", health);
 	}
 	public void SetCoins(int newCoins) {
 		coins = newCoins;
-		GameManager.instance.UpdatePlayerStats<int>("coins", coins);
+		GameManager.instance.UpdatePlayerStats("coins", coins);
 	}
 
 	public int GetCoins() {
@@ -85,7 +82,6 @@ public class Player : MovingObject {
 	}
 
 	private void changeQty (string type, int qty) {
-		Debug.Log(" quantity of " + type + " set to " + qty.ToString());
 		switch (type) {
 			case "coin":
 				int newCoins = coins + qty;

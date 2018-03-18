@@ -14,8 +14,20 @@ public class GameManager : MonoBehaviour {
 	public int maxCoins;
 	public int maxHealth;
 
-	public int coins;
-	public int health;
+	private const int DEFAULT_COINS = 0;
+	private const int DEFAULT_HEALTH = 3;
+
+	private Dictionary<string, int> playerStats = new Dictionary<string, int>();
+
+	private void printStats() {
+		// convenience method for debugging 
+		string output = "player stats: { "; 
+		foreach (KeyValuePair<string, int> p in playerStats) {
+			output += p.Key + ": " + p.Value.ToString() + ", ";
+		}
+		output += "}";
+		Debug.Log(output);
+	}
 
 	// public Player player;
 
@@ -34,6 +46,16 @@ public class GameManager : MonoBehaviour {
 		maxCoins = 10;
 		maxHealth = 5;
 
+		if (!playerStats.ContainsKey("coins"))
+			playerStats["coins"] = DEFAULT_COINS;
+
+		if (!playerStats.ContainsKey("health"))
+			playerStats["health"] = DEFAULT_HEALTH;
+
+		
+		
+		// playerStats["health"] = 3;
+
 		// register the callback 
 		SceneManager.sceneLoaded += SceneLoadCallback;
 
@@ -44,24 +66,33 @@ public class GameManager : MonoBehaviour {
 	void SceneLoadCallback(Scene scene, LoadSceneMode sceneMode) {
 		if (!scene.name.Contains("Menu")) {
 			canvas = GameObject.Find("StatsCanvas");
-
-			Debug.Log("canvas is " + canvas.name);
-			Debug.Log("Instance canvas is " + instance.canvas.name);
-			playerObj = GameObject.Find("Player");
-			Debug.Log("Player is " + playerObj.name);
-			player = playerObj.GetComponent<Player>();
-			player.SetHealth(3);
-			player.SetCoins(0);
+			player = GameObject.Find("Player").GetComponent<Player>();
+			player.SetHealth(playerStats["health"]);
+			player.SetCoins(playerStats["coins"]);
 		}
+
+		printStats();
+
 
 
 	}
 
-	public void UpdatePlayerStats<T> (string key, T value) {
-
-		Debug.Log("status of " + key + " set to " + value.ToString() );
+	public void UpdatePlayerStats(string key, int value) {
 		// TODO check here if player dies, a win condition is satisfied, etc. 
-		canvas.GetComponent<CanvasManager>().UpdateValue<T>(key, value);
+
+		playerStats[key] = value;
+
+		printStats();
+		canvas.GetComponent<CanvasManager>().UpdateValue<int>(key, value);
+		if (playerStats["health"] <= 0)
+			PlayerDie();
+			
+
+	}
+
+	public void PlayerDie() {
+		playerStats["health"] = DEFAULT_HEALTH;
+		SceneManager.LoadScene("GameOverMenu");
 	}
 
 	// Update is called once per frame
