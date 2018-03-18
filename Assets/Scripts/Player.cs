@@ -12,18 +12,19 @@ public class Player : MovingObject {
 	private int maxCoins;
 	private int maxHealth;
 
-	// Use this for initialization
-	void Start () {
-		// TODO get animator 
-		// TODO get max coins, health from GameManager 
-		maxCoins = GameManager.instance.maxCoins;
-		maxHealth = GameManager.instance.maxHealth;
-		// health = 3;
-		// coins = 0;
-		SetHealth(3);
-		SetCoins(0);
-		base.Start();
-	}
+	// // Use this for initialization
+	// void Start () {
+	// 	// TODO get animator 
+	// 	// TODO get max coins, health from GameManager 
+	// 	maxCoins = GameManager.instance.maxCoins;
+	// 	maxHealth = GameManager.instance.maxHealth;
+	// 	// health = 3;
+	// 	// coins = 0;
+	// 	SetHealth(3);
+	// 	SetCoins(0);
+	// 	Debug.Log("my name is " + name);
+	// 	base.Start();
+	// }
 	
 	public void SetHealth(int newHealth) {
 		health = newHealth;
