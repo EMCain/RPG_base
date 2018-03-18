@@ -57,9 +57,11 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public void UpdatePlayerStats<T> (string name, T value) {
+	public void UpdatePlayerStats<T> (string key, T value) {
+
+		Debug.Log("status of " + key + " set to " + value.ToString() );
 		// TODO check here if player dies, a win condition is satisfied, etc. 
-		canvas.GetComponent<CanvasManager>().UpdateValue<T>(name, value);
+		canvas.GetComponent<CanvasManager>().UpdateValue<T>(key, value);
 	}
 
 	// Update is called once per frame

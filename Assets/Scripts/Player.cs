@@ -12,19 +12,13 @@ public class Player : MovingObject {
 	private int maxCoins;
 	private int maxHealth;
 
-	// // Use this for initialization
-	// void Start () {
-	// 	// TODO get animator 
-	// 	// TODO get max coins, health from GameManager 
-	// 	maxCoins = GameManager.instance.maxCoins;
-	// 	maxHealth = GameManager.instance.maxHealth;
-	// 	// health = 3;
-	// 	// coins = 0;
-	// 	SetHealth(3);
-	// 	SetCoins(0);
-	// 	Debug.Log("my name is " + name);
-	// 	base.Start();
-	// }
+	// Use this for initialization
+	void Start () {
+
+		maxCoins = GameManager.instance.maxCoins;
+		maxHealth = GameManager.instance.maxHealth;
+		base.Start();
+	}
 	
 	public void SetHealth(int newHealth) {
 		health = newHealth;
@@ -91,6 +85,7 @@ public class Player : MovingObject {
 	}
 
 	private void changeQty (string type, int qty) {
+		Debug.Log(" quantity of " + type + " set to " + qty.ToString());
 		switch (type) {
 			case "coin":
 				int newCoins = coins + qty;
