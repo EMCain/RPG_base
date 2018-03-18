@@ -15,6 +15,11 @@ things I'd like to add next:
     - https://docs.unity3d.com/Manual/testing-editortestsrunner.html
     - I'd probably follow the steps in that project to generate a basic test. I'd make a `testing` branch, I think, until I got it running reasonably well. 
 
+* following that, setting up a CI build on Github 
+    - instructions for running from the command line here https://docs.unity3d.com/Manual/CommandLineArguments.html
+    - I would also have to figure out how to get Github to run it...
+    - https://gist.github.com/eppz/ad4fb8d64bdcb0c50a6abea57716823e
+
 * multiple level, menu screens 
 * improve UI for StatsCanvas 
 * modularize things? Create assets? IDK 
