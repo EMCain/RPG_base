@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
-	public GameObject canvas; // TODO type consistency
-	public GameObject playerObj;
+	public CanvasManager canvas; 
 	public Player player; 
 
 	public int maxCoins;
@@ -28,8 +27,6 @@ public class GameManager : MonoBehaviour {
 		output += "}";
 		return output;
 	}
-
-	// public Player player;
 
 	// Use this for initialization
 	void Awake () {
@@ -52,10 +49,6 @@ public class GameManager : MonoBehaviour {
 		if (!playerStats.ContainsKey("health"))
 			playerStats["health"] = DEFAULT_HEALTH;
 
-		
-		
-		// playerStats["health"] = 3;
-
 		// register the callback 
 		SceneManager.sceneLoaded += SceneLoadCallback;
 
@@ -65,24 +58,17 @@ public class GameManager : MonoBehaviour {
 
 	void SceneLoadCallback(Scene scene, LoadSceneMode sceneMode) {
 		if (!scene.name.Contains("Menu")) {
-			canvas = GameObject.Find("StatsCanvas");
+			canvas = GameObject.Find("StatsCanvas").GetComponent<CanvasManager>();
 			player = GameObject.Find("Player").GetComponent<Player>();
 			player.SetHealth(playerStats["health"]);
 			player.SetCoins(playerStats["coins"]);
 		}
-
-		Debug.Log(scene.name + " " +  printStats());
-
-
-
 	}
 
 	public void UpdatePlayerStats(string key, int value) {
-		canvas.GetComponent<CanvasManager>().UpdateValue<int>(key, value);
+		canvas.UpdateValue<int>(key, value);
 		if (player.GetHealth() <= 0)
 			PlayerDie();
-			
-
 	}
 
 	public void SavePlayerState() {

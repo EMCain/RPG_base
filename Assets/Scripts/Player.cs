@@ -14,7 +14,6 @@ public class Player : MovingObject {
 
 	// Use this for initialization
 	void Start () {
-
 		maxCoins = GameManager.instance.maxCoins;
 		maxHealth = GameManager.instance.maxHealth;
 		base.Start();
@@ -93,7 +92,6 @@ public class Player : MovingObject {
 				int newHealth = health + qty;
 				if (newHealth > maxHealth)
 					newHealth = maxHealth; 
-				// TODO check if dead/game over -- perhaps in the GameManager
 				SetHealth(newHealth);
 				break;
 		}

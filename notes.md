@@ -1,5 +1,25 @@
 # project notes
 
+## 17-03-2018: 
+
+I fixed the bugs from last time. 
+
+Existing functionality:
+
+* coins persist across levels 
+* StatsCanvas and Player objects are only assigned programatically. (It might make sense to make them Private on the game manager class because of this.)
+
+things I'd like to add next:
+
+* unit and integration tests 
+    - https://docs.unity3d.com/Manual/testing-editortestsrunner.html
+    - I'd probably follow the steps in that project to generate a basic test. I'd make a `testing` branch, I think, until I got it running reasonably well. 
+
+* multiple level, menu screens 
+* improve UI for StatsCanvas 
+* modularize things? Create assets? IDK 
+    https://docs.unity3d.com/Manual/HOWTO-exportpackage.html I think I should get a more fleshed out version running first 
+
 ## 25-02-2018:
 
 keep getting 
