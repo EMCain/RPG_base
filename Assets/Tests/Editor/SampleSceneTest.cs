@@ -7,22 +7,27 @@ using System.Collections;
 
 public class SampleSceneTest {
 
-	[Test]
-	public void VerifySceneContents() {
+	// declare anything that will be initialized in setup and used in multiple tests
+	GameObject player; 
+	GameObject enemy; 
+
+	[SetUp]
+	public void Setup() {
 		EditorSceneManager.OpenScene(
 			"Assets/Scenes/sample.unity", 
 			OpenSceneMode.Single
 		);
-		GameObject player = GameObject.Find("Player"); 
-		Assert.IsNotNull(player, "Player object was not found in scene!");
+		player = GameObject.Find("Player"); 
+		enemy = GameObject.Find("baddie1"); 
 	}
 
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
-	[UnityTest]
-	public IEnumerator NewEditModeTest1WithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
-		yield return null;
+	[Test]
+	public void VerifySceneContents() {
+		// for some reason, you have to do a == comparison to "null" rather than asserting "Is.Not.Null" for this assertion (that GameObject was found) to work properly. 
+		Assert.That(player == null, Is.False, "Player GameObject was not found in scene"); 
+		Assert.That(player.GetComponent<Player>(), Is.Not.Null, "Player GameObject did not have a Player component attached");
+
+		Assert.That(enemy == null, Is.False, "Enemy GameObject was not found in scene"); 
+		Assert.That(enemy.GetComponent<BasicEnemy>(), Is.Not.Null, "Enemy GameObject did not have a BasicEnemy component attached");
 	}
 }

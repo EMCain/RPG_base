@@ -1,5 +1,23 @@
 # project notes
 
+## 27-03-2018: 
+
+I tested that components were attached to the GameObjects. 
+
+I also found out that asserting Is.Not.Null gets a false positive when the object was not found. I'm not sure why this is, or if C# has different `null` types, or what. I fixed it by asserting that `object == null` is False. 
+
+
+
+## 25-03-2018: 
+
+I got a basic test to work.
+
+Next I want to try testing actual functionality, for example, what happens on collision with various objects under various circumstances. 
+
+I'm having trouble finding reference materials. This may help: https://blogs.unity3d.com/2014/07/28/unit-testing-at-the-speed-of-light-with-unity-test-tools/
+
+I would also like to separate out generic setup functions into a "setup" method so I don't have to repeat things. 
+
 ## 17-03-2018: 
 
 I fixed the bugs from last time. 
