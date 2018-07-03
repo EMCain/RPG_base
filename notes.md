@@ -1,5 +1,11 @@
 # project notes
 
+## 02-07-2018:
+
+I added a sprite for the dialog background. 
+
+when I code the dialog I want to make the sprite hidden.
+
 ## 27-03-2018: 
 
 I tested that components were attached to the GameObjects. 
