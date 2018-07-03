@@ -1,5 +1,23 @@
 # project notes
 
+## 27-03-2018: 
+
+I tested that components were attached to the GameObjects. 
+
+I also found out that asserting Is.Not.Null gets a false positive when the object was not found. I'm not sure why this is, or if C# has different `null` types, or what. I fixed it by asserting that `object == null` is False. 
+
+
+
+## 25-03-2018: 
+
+I got a basic test to work.
+
+Next I want to try testing actual functionality, for example, what happens on collision with various objects under various circumstances. 
+
+I'm having trouble finding reference materials. This may help: https://blogs.unity3d.com/2014/07/28/unit-testing-at-the-speed-of-light-with-unity-test-tools/
+
+I would also like to separate out generic setup functions into a "setup" method so I don't have to repeat things. 
+
 ## 17-03-2018: 
 
 I fixed the bugs from last time. 
@@ -14,6 +32,11 @@ things I'd like to add next:
 * unit and integration tests 
     - https://docs.unity3d.com/Manual/testing-editortestsrunner.html
     - I'd probably follow the steps in that project to generate a basic test. I'd make a `testing` branch, I think, until I got it running reasonably well. 
+
+* following that, setting up a CI build on Github 
+    - instructions for running from the command line here https://docs.unity3d.com/Manual/CommandLineArguments.html
+    - I would also have to figure out how to get Github to run it...
+    - https://gist.github.com/eppz/ad4fb8d64bdcb0c50a6abea57716823e
 
 * multiple level, menu screens 
 * improve UI for StatsCanvas 
